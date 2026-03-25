@@ -15,9 +15,10 @@
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{background:var(--navy);color:var(--cream);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden;cursor:none;}
-#cursor{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--gold);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:left .05s,top .05s;}
-#cursor-ring{position:fixed;width:36px;height:36px;border-radius:50%;border:1px solid rgba(43,92,230,.4);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .18s,top .18s,transform .25s;}
+body{background:var(--navy);color:var(--cream);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden;cursor:default;}
+/* Native OS cursor — arrow by default, pointer on interactive elements */
+a,button,[role="button"],.th-card,.nav-cta,.btn-gold,.btn-ghost,.c-link{cursor:pointer;}
+select,input,textarea{cursor:text;}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 6%;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
@@ -165,7 +166,7 @@ h2.s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4.5vw,3
 /* THOUGHT LEADERSHIP */
 #thoughts{background:var(--navy-2);}
 .thoughts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem;}
-.th-card{background:var(--navy);border:1px solid var(--border);border-radius:8px;padding:1.8rem;transition:border-color .3s,transform .3s;cursor:pointer;}
+.th-card{background:var(--navy);border:1px solid var(--border);border-radius:8px;padding:1.8rem;transition:border-color .3s,transform .3s;}
 .th-card:hover{border-color:rgba(43,92,230,.45);transform:translateY(-3px);}
 .th-cat{font-size:.64rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem;}
 .th-title{font-family:'Cormorant Garamond',serif;font-size:1.02rem;color:var(--cream);margin-bottom:.8rem;line-height:1.35;}
@@ -203,9 +204,6 @@ footer{text-align:center;padding:2rem;font-size:.71rem;color:var(--muted);border
 </style>
 </head>
 <body>
-
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
 
 <nav>
   <a href="#hero" class="nav-logo">DM</a>
@@ -613,7 +611,7 @@ footer{text-align:center;padding:2rem;font-size:.71rem;color:var(--muted);border
     <div class="contact-h">Let's build something<br>impactful together.</div>
     <p class="contact-sub">Whether you have a role, a project, or just want to connect — I'd love to hear from you.</p>
     <div class="contact-links">
-      <a href="mailto:mishra.deepak1002@gmail.com" class="c-link">✉ Email Me</a>
+      <a href="/cdn-cgi/l/email-protection#8ee3e7fde6fcefa0eaebebfeefe5bfbebebccee9e3efe7e2a0ede1e3" class="c-link">✉ Email Me</a>
       <a href="https://linkedin.com/in/deepak-mishra-56b243130" target="_blank" class="c-link">in LinkedIn</a>
       <a href="https://drive.google.com/file/d/1ncXv-34dNflkIZIzoSxqRqQ4F3JaV5Rn/view?usp=drive_link" class="c-link">↓ Download Resume</a>
     </div>
@@ -624,16 +622,7 @@ footer{text-align:center;padding:2rem;font-size:.71rem;color:var(--muted);border
   © 2026 Deepak Mishra · CAPM® · Google PM Certified · Qualcomm AI Certified · Mohali, Punjab, India
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-const cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
-document.addEventListener('mousemove',e=>{
-  cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';
-  ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px';
-});
-document.querySelectorAll('a,button').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{ring.style.transform='translate(-50%,-50%) scale(1.7)';});
-  el.addEventListener('mouseleave',()=>{ring.style.transform='translate(-50%,-50%) scale(1)';});
-});
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 document.documentElement.classList.add('js-reveal-ready');
 const io=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});
@@ -644,7 +633,4 @@ document.querySelectorAll('.reveal').forEach(el=>{
   if(rect.top<window.innerHeight){el.classList.add('visible');}
   else{io.observe(el);}
 });
-const secs=document.querySelectorAll('section[id]'),navAs=document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll',()=>{
-  let cur2='';
-  secs.forEach(s=>{if(window.sc
+const secs=document.querySele
