@@ -186,7 +186,8 @@ footer{text-align:center;padding:2rem;font-size:.71rem;color:var(--muted);border
 
 /* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease;}
+.reveal{opacity:1;transform:none;transition:opacity .7s ease,transform .7s ease;}
+.js-reveal-ready .reveal{opacity:0;transform:translateY(20px);}
 .reveal.visible{opacity:1;transform:none;}
 
 @media(max-width:960px){
@@ -612,9 +613,9 @@ footer{text-align:center;padding:2rem;font-size:.71rem;color:var(--muted);border
     <div class="contact-h">Let's build something<br>impactful together.</div>
     <p class="contact-sub">Whether you have a role, a project, or just want to connect — I'd love to hear from you.</p>
     <div class="contact-links">
-      <a href="/cdn-cgi/l/email-protection#f490919184959fda999d879c8695b49199959d98da979b99" class="c-link">✉ Email Me</a>
+      <a href="mailto:mishra.deepak1002@gmail.com" class="c-link">✉ Email Me</a>
       <a href="https://linkedin.com/in/deepak-mishra-56b243130" target="_blank" class="c-link">in LinkedIn</a>
-      <a href="#" class="c-link">↓ Download Resume</a>
+      <a href="https://drive.google.com/file/d/1ncXv-34dNflkIZIzoSxqRqQ4F3JaV5Rn/view?usp=drive_link" class="c-link">↓ Download Resume</a>
     </div>
   </div>
 </section>
@@ -633,10 +634,16 @@ document.querySelectorAll('a,button').forEach(el=>{
   el.addEventListener('mouseenter',()=>{ring.style.transform='translate(-50%,-50%) scale(1.7)';});
   el.addEventListener('mouseleave',()=>{ring.style.transform='translate(-50%,-50%) scale(1)';});
 });
+document.documentElement.classList.add('js-reveal-ready');
 const io=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});
-},{threshold:0.1});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>{
+  // Immediately mark elements already in view as visible
+  const rect=el.getBoundingClientRect();
+  if(rect.top<window.innerHeight){el.classList.add('visible');}
+  else{io.observe(el);}
+});
 const secs=document.querySelectorAll('section[id]'),navAs=document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll',()=>{
   let cur2='';
